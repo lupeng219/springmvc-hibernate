@@ -29,20 +29,14 @@ public class TestController {
     public String test(HttpServletRequest request){
         User user = new User();
         user.setName("lupeng");
-//        System.err.println(testService.savaUser(user));
-//        User users =  testService.findUserById(1L);
-//        System.err.println(users.toString());
-//        redisCache.set("userId",users.getId() );
-//        System.err.println(redisCache.get("userId"));
+        System.err.println(testService.savaUser(user));
+        User users =  testService.findUserById(1L);
+        System.err.println(users.toString());
+        redisCache.set("userId",1 );
+        System.err.println(redisCache.get("userId"));
         testService.removeUserById(2L);
-//        request.setAttribute("user",users);
+        request.setAttribute("user",users);
         return "index";
     }
-    @RequestMapping("springTest")
-    public String springTest(){
-        System.err.println("22222222222");
-        logger.info(testService.test()+"11111111");
-        return null;
-        }
     
 }
