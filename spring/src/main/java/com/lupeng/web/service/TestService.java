@@ -9,4 +9,6 @@ public interface TestService {
     public Long savaUser(User user);
     
     public User findUserById(Long id);
+    
+    public Long removeUserById(Long id);
 }

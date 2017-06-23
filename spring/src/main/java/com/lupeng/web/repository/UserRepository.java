@@ -8,4 +8,6 @@ public interface UserRepository {
     public Long save(User user); 
     
     public User findAll(Long id);
+    
+    public Long removeUserById(Long id);
 }

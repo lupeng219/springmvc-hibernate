@@ -28,4 +28,9 @@ public class TestService implements com.lupeng.web.service.TestService {
         return userRepository.findAll(id);
     }
 
+    @Override
+    public Long removeUserById(Long id) {
+        return userRepository.removeUserById(id);
+    }
+
 }
