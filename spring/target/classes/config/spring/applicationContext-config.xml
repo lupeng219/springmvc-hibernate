@@ -10,9 +10,12 @@
     http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
+ <!--扫描配置文件(这里指向的是之前配置的那个config.properties)-->
+    <context:property-placeholder location="classpath:config/config.properties" />
 	<!-- <import resource="classpath:config/spring/applicationContext-resources.xml" />
 	<import resource="classpath:config/spring/applicationContext-security.xml" />
-	<import resource="classpath:config/spring/applicationContext-jedis.xml" /> -->
+	 -->
+	 <import resource="classpath:config/spring/applicationContext-jedis.xml" />
 	<import resource="classpath:config/spring/applicationContext-hibernate.xml" />
 
 

@@ -16,8 +16,7 @@
      	   
 	<!--********************************************配置hibernate********************************************-->
 
-    <!--扫描配置文件(这里指向的是之前配置的那个config.properties)-->
-    <context:property-placeholder location="classpath:config/config.properties" />
+   
 
         <bean id="dataSource"
         class="org.apache.commons.dbcp2.BasicDataSource">
