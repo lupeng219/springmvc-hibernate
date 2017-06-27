@@ -18,8 +18,11 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     public Employee findEmployeeByUserName(String name) {
         Session session = sessionFactory.openSession();  
         Criteria cri = session.createCriteria(Employee.class);  
-        cri.add(Restrictions.eq("username", name));  
-        Employee employee = (Employee) cri.list().get(0);  
+        cri.add(Restrictions.eq("username", name)); 
+        Employee employee = null;
+        if (cri.list().size()>0){
+            employee = (Employee) cri.list().get(0);  
+        }
         session.close();  
         return employee ;
     }

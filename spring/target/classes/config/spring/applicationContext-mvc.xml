@@ -18,7 +18,7 @@
 		content-negotiation-manager="contentNegotiationManager" />
 	
 	<!-- 有 @Controller注解的表现层控制器组件 -->
-	<context:component-scan base-package="com.lupeng.web" />
+	<context:component-scan base-package="com.lupeng.web.controller" />
 	<mvc:interceptors>
 		<!--拦截所有请求 -->
 		<bean class="com.lupeng.web.util.CommonInterceptor" />
