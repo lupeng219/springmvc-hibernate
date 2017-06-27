@@ -26,6 +26,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lupeng.web.data.EmployeeData;
+import com.lupeng.web.data.Index_Menu;
+import com.lupeng.web.service.PowerService;
+import com.lupeng.web.util.Const;
 import com.lupeng.web.util.SecurityUserHolder;
 
 
@@ -36,8 +39,11 @@ public class LoginController {
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Resource(name = "redisTemplate")
-    protected ValueOperations<String, Integer> redisCache;
-
+    protected ValueOperations<String, Integer> redisCache;  
+    @Resource(name = "redisTemplate")
+    protected ValueOperations<String, List<Index_Menu>> Index_MenuCache;
+    @Autowired
+    private PowerService powerService;
 
     @RequestMapping("/toLogin")
     public String logs(HttpServletRequest request) {
@@ -84,18 +90,17 @@ public class LoginController {
      */
     @RequestMapping("/menu")
     public String menu(HttpServletRequest request) {
-//        // 查询所有的员工权限
-//        HttpSession session = request.getSession();
-//        EmployeeData employee = (EmployeeData) session.getAttribute("currentUser");
-//        List<Index_Menu> result = null;
-//        //Index_MenuCache.getOperations().delete(Const.MENU + employee.getPersonaId());
-//        result = Index_MenuCache.get(Const.MENU + employee.getPersonaId());
-//        if (result == null) {
-//            result = powerService.getMenus();
-//            Index_MenuCache.set(Const.MENU + employee.getPersonaId(), result,7 * Utils.DAY,
-//                    TimeUnit.SECONDS);
-//        }
-//        request.setAttribute("result", result);
+        // 查询所有的员工权限
+        HttpSession session = request.getSession();
+        EmployeeData employee = (EmployeeData) session.getAttribute("currentUser");
+        List<Index_Menu> result = null;
+        Index_MenuCache.getOperations().delete(Const.MENU + employee.getPersonaId());
+        result = Index_MenuCache.get(Const.MENU + employee.getPersonaId());
+        if (result == null) {
+            result = powerService.getMenus();
+            Index_MenuCache.set(Const.MENU + employee.getPersonaId(), result);
+        }
+        request.setAttribute("result", result);
         return "common/menu";
     }
 
