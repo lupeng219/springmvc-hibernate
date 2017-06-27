@@ -1,0 +1,48 @@
+$(function(){
+	$("#searcher").on("click",function(){
+		var temp = $("#tempParameName").val();
+		$("#parameName").val(temp);
+		$("#myForm").submit();
+	});
+	
+	//导出
+	$("#export").on("click",function(){
+		var temp = $("#tempParameName").val();
+		$("#parameName").val(temp);
+		$("#myForm").attr("action",root+"/service/employee/export?isCert=1");
+		$("#myForm").submit();
+		$("#myForm").attr("action",root+"/service/employee/getAllUsersTwo");
+	});
+	
+	var $ur_a = $(".pagination li a");
+	$ur_a.on("click",function(){
+		var parameName = $("#tempParameName").val();
+		var pageNumber = $(this).attr("data-pagenum");
+		searcher(parameName,pageNumber);
+		$("#myForm").submit();
+	});
+	
+	//提交方法,(参数数值，当前页数)
+	function searcher(parameName,pageNumber ){
+		$("#parameName").val(parameName);
+		$("#pageNumber").val(pageNumber);
+		$("#myForm").submit();
+	}
+	
+	$(".btn-disable").on("click",function(){
+		var state = $(this).data("state");
+		var custNo = $(this).data("custno");
+		var postdata = {
+				"state":state,
+				"custNo":custNo
+		};
+		$.post(root+"/service/employee/modifyUserEnable",postdata,function(data){
+			if(data.retCode){
+				alert("操作成功!");
+				window.location.reload(true);
+			}else{
+				alert("操作失败!");
+			}
+		});
+	});
+});

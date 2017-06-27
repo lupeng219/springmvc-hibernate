@@ -116,6 +116,7 @@
 	      <artifactId>c3p0</artifactId>
 	      <version>${c3p0Version}</version>
         </dependency>
+        
    </dependencies>
    <build>
 		<finalName>spring</finalName>

@@ -1,0 +1,25 @@
+$(function(){
+	$("#searcher").on("click",function(){
+		var temp = $("#tempParameName").val();
+		$("#parameName").val(temp);
+		$("#myForm").submit();
+	});
+	
+	
+	var $ur_a = $(".pagination li a");
+	$ur_a.on("click",function(){
+		var parameName = $("#tempParameName").val();
+		var pageNumber = $(this).attr("data-pagenum");
+		searcher(parameName,pageNumber);
+		$("#myForm").submit();
+	});
+	
+	//提交方法,(参数数值，当前页数)
+	function searcher(parameName,pageNumber ){
+		$("#parameName").val(parameName);
+		$("#pageNumber").val(pageNumber);
+		$("#myForm").submit();
+	}
+	
+	
+});
