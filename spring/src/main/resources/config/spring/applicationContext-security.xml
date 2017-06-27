@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
+            http://www.springframework.org/schema/security   
+            http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+            
+    <http pattern="/" security="none"></http><!-- 首页 -->
+    <http pattern="/service/login/index" security="none" />
+    <http pattern="/service/login/logs" security="none" />
+	<http pattern="/css/**" security="none" />
+	<http pattern="/img/**" security="none" />
+	<http pattern="/js/**" security="none" />
+	<http pattern="/htm/**" security="none" />
+	<http pattern="/service/login" security="none" /><!-- 登录页面 -->
+	
+	
+	  
+	<!-- 登陆失败的或者没登陆跳转的接口 -->
+	 <http  access-denied-page="/service/login/unSecurity" entry-point-ref="authenticationProcessingFilterEntryPoint">
+		<intercept-url pattern="/service/employee/getAllEmployees" access="ROLE_ALLEMP" />
+	<!-- 需要登陆才能访问的路径 -->
+		<custom-filter ref="loginFilter" position="FORM_LOGIN_FILTER" />
+		<logout logout-url="/service/login/logout" logout-success-url="/" invalidate-session="true"
+				delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE"/>
+		
+		<session-management invalid-session-url="/service/login/logout"  session-authentication-strategy-ref="sas"/>
+	</http>
+	
+	<!-- 登录验证器 -->
+	<beans:bean id="loginFilter" class="com.lupeng.web.springsecurity.P2PUsernamePasswordAuthenticationFilter">
+		<!-- 处理登录的action /j_spring_security_check -->
+		<beans:property name="filterProcessesUrl" value="/service/login/login"/>
+		<!-- 认证管理 点击完登录后，最终实现校验的是AuthenticationProvider -->
+		<beans:property name="authenticationManager" ref="myAuthenticationManager"/>
+		<!-- 验证成功后的处理 -->
+		<beans:property name="authenticationSuccessHandler" ref="loginLogAuthenticationSuccessHandler"/>
+		<!-- 验证失败后的处理 -->
+		<beans:property name="authenticationFailureHandler" ref="simpleUrlAuthenticationFailureHandler"/>
+		<!-- 实现多个帐号登录时最后一次登录的有效,目前只请允许登录一个帐号 -->
+		<beans:property name="sessionAuthenticationStrategy" ref="sas"/>
+	</beans:bean>
+	<beans:bean id="loginLogAuthenticationSuccessHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+		<beans:property name="alwaysUseDefaultTargetUrl" value="true"/>
+		<beans:property name="defaultTargetUrl" value="/service/login/loginSucc"/>
+	</beans:bean>
+	<beans:bean id="simpleUrlAuthenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+		<!-- 可以配置相应的跳转方式。属性forwardToDestination为true采用forward false为sendRedirect -->
+		<beans:property name="defaultFailureUrl" value="/service/login/loginFail"/>
+	</beans:bean>
+	<beans:bean id="sas" class="org.springframework.security.web.authentication.session.ConcurrentSessionControlStrategy">  
+	    <beans:property name="maximumSessions" value="1"/>
+	    <beans:property name="exceptionIfMaximumExceeded" value="false"/>  
+	    <beans:constructor-arg name="sessionRegistry" ref="sessionRegistry"/>  
+	</beans:bean>
+	<beans:bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl"/>
+	<authentication-manager alias="myAuthenticationManager">
+		<authentication-provider ref="authenticationProvider"/>
+	</authentication-manager>
+	<beans:bean id="authenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<!-- 配置异常能被捕捉 -->
+	    <beans:property name="hideUserNotFoundExceptions" value="false" />
+	    <beans:property name="userDetailsService" ref="userDetailService" /> 
+	<!--     开发过程中可以先把这两行注释掉，
+	    	注：用户注册时的加密的密码应该为：MD5.getMD5Digest("pwd"+"{"+user.id+"}"),否则在验证时就会一直通不过 -->
+	    <beans:property name="passwordEncoder" ref="passwordEncode" />
+	    <beans:property name="saltSource" ref="saltSource" />
+	</beans:bean>
+	<!-- 密码加密 -->
+	<beans:bean id="passwordEncode" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />  
+	<beans:bean id="saltSource" class="org.springframework.security.authentication.dao.ReflectionSaltSource">  
+		<beans:property name="userPropertyToUse" value="custNo"/>  
+	</beans:bean>
+	<beans:bean id="userDetailService" class="com.lupeng.web.service.impl.EmployeeServiceImpl" />
+	<!-- 未登录的切入点 -->
+	<beans:bean id="authenticationProcessingFilterEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<beans:property name="loginFormUrl" value="/service/login/unSecurity" />
+	</beans:bean>
+	
+</beans:beans>

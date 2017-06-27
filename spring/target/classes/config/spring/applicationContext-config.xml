@@ -9,14 +9,19 @@
     http://www.springframework.org/schema/context/spring-context-3.2.xsd
     http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
-
+	
  <!--扫描配置文件(这里指向的是之前配置的那个config.properties)-->
     <context:property-placeholder location="classpath:config/config.properties" />
-	<!-- <import resource="classpath:config/spring/applicationContext-resources.xml" />
-	<import resource="classpath:config/spring/applicationContext-security.xml" />
-	 -->
+    
+    <!-- 通过exclude-filter 把所有 @Controller注解的表现层控制器组件排除 -->
+	<context:component-scan base-package="com.lupeng.web">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	
+	 <import resource="classpath:config/spring/applicationContext-security.xml" />
 	 <import resource="classpath:config/spring/applicationContext-jedis.xml" />
-	<import resource="classpath:config/spring/applicationContext-hibernate.xml" />
+	 <import resource="classpath:config/spring/applicationContext-hibernate.xml" />
 
 
 </beans>

@@ -1,4 +1,4 @@
-
+package com.lupeng.web.springsecurity;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,15 +14,18 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.lupeng.web.entity.Employee;
+import com.lupeng.web.repository.EmployeeRepository;
+
 public class P2PUsernamePasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     public static final String USERNAME = "userName";
     public static final String PASSWORD = "userPassword";
 
-    @Autowired
-    private Md5PasswordEncoder passwordEncoder;
-    @Autowired
-    private EmployeeRepository employeeRepository;
+    @Autowired(required =false)
+    public Md5PasswordEncoder passwordEncoder;
+    @Autowired(required =false)
+    public EmployeeRepository employeeRepository;
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request,
