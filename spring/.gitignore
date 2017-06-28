@@ -1,4 +1,4 @@
-/target/
+/target/*
 **/.metadata/
 **/RemoteSystemsTempFiles/
 **/.project
@@ -9,4 +9,3 @@
 **/target
 *.
 /bin/
-logs/front-app.log
