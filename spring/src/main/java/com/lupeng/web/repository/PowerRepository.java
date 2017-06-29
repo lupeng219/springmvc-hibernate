@@ -9,7 +9,8 @@ import com.lupeng.web.entity.Power;
 public interface PowerRepository {
 //    
 //    public List<Power> getAllPower();
-  
+    public void save(Power power);
+    
     public List<Power> getLevelOne();
     
     public List<Power> getAllPowerTwo();

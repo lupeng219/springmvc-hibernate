@@ -1,19 +1,30 @@
 package com.lupeng.web.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
 import com.lupeng.web.data.Index_Menu;
 import com.lupeng.web.entity.Power;
+import com.lupeng.web.repository.PersonaPowerRepository;
 import com.lupeng.web.repository.PowerRepository;
 import com.lupeng.web.service.PowerService;
+import com.lupeng.web.util.Const;
 @Service
 public class PowerServiceImpl  implements PowerService{
     @Autowired
     private PowerRepository powerRepository;
+    @Autowired
+    private PersonaPowerRepository personaPowerRepository;
+    @Resource(name = "redisTemplate")
+    protected ValueOperations<String, Integer> redisCache;
     @Override
     public List<Index_Menu> getMenus() {
         // 首页菜单实体类
@@ -75,6 +86,35 @@ public class PowerServiceImpl  implements PowerService{
         }
 
         return reuslt_list;
+    }
+    @Override
+    public List<Power> getAllPower() {
+        return powerRepository.getAllPowerTwo();
+    }
+
+    @Override
+    public List<Power> getLevelOne() {
+        return powerRepository.getLevelOne();
+    }
+
+    @Override
+    public List<Long> fingPowerIdByPersonaId(Long personaId) {
+        return personaPowerRepository.findPowerId(personaId);
+    }
+
+    @Override
+    public List<Power> findPowerByPowerId(List<Long> powerId) {
+        return powerRepository.findPowerByPowerId(powerId);
+    }
+
+    @Override
+    public Map<String, Object> addPowerInfo(Power power) {
+        Map<String, Object> map = new HashMap<>();
+        powerRepository.save(power);
+        redisCache.getOperations().delete(Const.MENU + 1);
+        map.put(Const.retCode, true);
+        map.put(Const.retMsg, "添加成功");
+        return map;
     }
 
 }

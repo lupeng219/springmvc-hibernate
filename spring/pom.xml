@@ -9,6 +9,7 @@
 		<artifactId>root</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+	
 	 <!-- 本人将配置包的版本信息都统一放入此处，方便以后管理-->
   <properties>
     <springVersion>4.3.1.RELEASE</springVersion>
@@ -121,6 +122,11 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>${fastjsonVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.crdloo.loanloop</groupId>
+			<artifactId>utils</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
    </dependencies>
    <build>

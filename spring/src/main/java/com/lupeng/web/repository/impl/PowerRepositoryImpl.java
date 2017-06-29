@@ -1,17 +1,17 @@
 package com.lupeng.web.repository.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.lupeng.web.entity.Employee;
 import com.lupeng.web.entity.Power;
 import com.lupeng.web.repository.PowerRepository;
 @Repository
@@ -46,11 +46,14 @@ public class PowerRepositoryImpl implements PowerRepository {
 
     @Override
     public List<Power> findPowerByPowerId(List<Long> powerId) {
-        Session session = sessionFactory.openSession();  
-        Criteria cri = session.createCriteria(Power.class);  
-        cri.add(Restrictions.in("powerId", powerId));  
-        List<Power> power =  cri.list();  
-        session.close();
+        List<Power> power =new ArrayList<>();
+        if(powerId.size()>0){
+            Session session = sessionFactory.openSession();  
+            Criteria cri = session.createCriteria(Power.class);  
+            cri.add(Restrictions.in("powerId", powerId));  
+            power =  cri.list();  
+            session.close();
+        }
         return power;
     }
 
@@ -63,6 +66,17 @@ public class PowerRepositoryImpl implements PowerRepository {
         List<Power> power =  cri.list();  
         session.close();
         return power;
+    }
+
+    @Override
+    public void save(Power power) {
+        Session session = sessionFactory.openSession();  
+        Transaction tx=session.beginTransaction();
+        session.save(power);//保存后customer对象处于持久化状态
+        session.flush();//清空缓存后customer对象处于游离状态
+        tx.commit();
+        session.close();
+//        getCurrentSession().save(power);
     }
 
     

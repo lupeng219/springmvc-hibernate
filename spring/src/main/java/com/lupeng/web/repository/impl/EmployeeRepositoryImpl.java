@@ -1,5 +1,8 @@
 package com.lupeng.web.repository.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,6 +28,19 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         }
         session.close();  
         return employee ;
+    }
+    @Override
+    public List<Employee> getEmployeeByEmployeeId(List<Long> employeeId) {
+        // TODO Auto-generated method stub @Query("SELECT e  FROM Employee e WHERE e.employeeId  in(?1) ")
+        List<Employee> e = new ArrayList<>() ;
+        if (employeeId.size()>0){
+            Session session = sessionFactory.openSession();  
+            Criteria cri = session.createCriteria(Employee.class);  
+            cri.add(Restrictions.in("employeeId", employeeId)); 
+            e =  cri.list();  
+            session.close();  
+        }
+        return e;
     }
 
 }
