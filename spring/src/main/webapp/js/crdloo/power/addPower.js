@@ -5,6 +5,10 @@ $(function(){
 		var powerName = $("#powerName").val();
 		var menuName = $("#menuName").val();
 		var powerId = $("#powerId").val();
+		if (powerUrl == "" || powerName == "" || menuName == "" || powerId == ""){
+			alert("不能为空");
+			return;
+		}
 		var postdata = {
 				"powerUrl":powerUrl,
 				"powerName":powerName,
@@ -26,6 +30,10 @@ $(function(){
 	$("#saveEmployee").on("click",function(){
 		//var powerName = $("#powerNameOne").val();
 		var menuName = $("#menuNameOne").val();
+		if (menuName == ""){
+			alert("不能为空");
+			return;
+		}
 		var postdata = {
 				"powerName":"icon-home",
 				"menuName":menuName,
