@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.crdloo.loanloop.exception.BusinessException;
 import com.crdloo.loanloop.utils.JsonHelper;
 import com.lupeng.web.data.EmployeeData;
 import com.lupeng.web.data.Index_Menu;
@@ -27,6 +28,7 @@ import com.lupeng.web.entity.Power;
 import com.lupeng.web.service.EmployeeService;
 import com.lupeng.web.service.PersonaService;
 import com.lupeng.web.service.PowerService;
+import com.lupeng.web.util.BusinessExcepsion;
 import com.lupeng.web.util.Const;
 import com.lupeng.web.util.SecurityUserHolder;
 import com.lupeng.web.util.StringUtil;
@@ -187,8 +189,14 @@ public class PersonaController {
      * 添加菜单
      */
     @RequestMapping("addPower")
-    public String addPower(HttpServletRequest request) {
+    public String addPower(HttpServletRequest request) throws BusinessExcepsion {
         List<Power> power = powerService.getLevelOne();
+        try {
+            
+        } catch (Exception e) {
+            throw new BusinessExcepsion(); 
+        }
+       
         request.setAttribute("power", power);
         return "power/addPower";
 
