@@ -16,4 +16,5 @@ public class AppHandler {
         model.addAttribute("a", "aa");
         return "redirect:/service/login/index";
     }
+   
 }
