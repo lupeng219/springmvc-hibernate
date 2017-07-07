@@ -3,6 +3,12 @@ import javax.jms.*;
 
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
+
+/**
+ * 原始的jms
+ * @author li
+ *
+ */
 public class JMSProducer {
     //默认连接用户名
     private static final String USERNAME = ActiveMQConnection.DEFAULT_USER;
