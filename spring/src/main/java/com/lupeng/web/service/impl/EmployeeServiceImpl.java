@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.crdloo.loanloop.utils.JsonHelper;
+
 import com.lupeng.web.data.EmployeeData;
 import com.lupeng.web.entity.Employee;
 import com.lupeng.web.entity.Power;
@@ -22,6 +22,7 @@ import com.lupeng.web.repository.EmployeeRepository;
 import com.lupeng.web.repository.PersonaPowerRepository;
 import com.lupeng.web.repository.PowerRepository;
 import com.lupeng.web.service.EmployeeService;
+import com.lupeng.web.util.JsonHelper;
 import com.lupeng.web.util.SecurityUserHolder;
 
 @Service("employeeService")

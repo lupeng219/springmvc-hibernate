@@ -124,11 +124,6 @@
 			<version>${fastjsonVersion}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.crdloo.loanloop</groupId>
-			<artifactId>utils</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-jms</artifactId>
 		    <version>4.2.6.RELEASE</version>
