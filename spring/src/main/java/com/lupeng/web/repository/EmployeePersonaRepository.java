@@ -15,4 +15,8 @@ public interface EmployeePersonaRepository {
 
    
     public List<Long> fingEmployeeIdBypersonaId(Long personaId);
+    
+    public void save(Employee_persona employee_persona);
+    
+    public void delete(Employee_persona employee_persona);
 }

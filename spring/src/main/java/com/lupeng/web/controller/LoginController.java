@@ -94,7 +94,7 @@ public class LoginController {
         HttpSession session = request.getSession();
         EmployeeData employee = (EmployeeData) session.getAttribute("currentUser");
         List<Index_Menu> result = null;
-        Index_MenuCache.getOperations().delete(Const.MENU + employee.getPersonaId());
+//        Index_MenuCache.getOperations().delete(Const.MENU + employee.getPersonaId());
         result = Index_MenuCache.get(Const.MENU + employee.getPersonaId());
         if (result == null) {
             result = powerService.getMenus();
