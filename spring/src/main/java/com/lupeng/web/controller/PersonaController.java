@@ -159,9 +159,6 @@ public class PersonaController {
                 personaService.updatePersona(persona, powerIds);
                 // 更新用户权限
                 List<Index_Menu> result = null;
-                // result =
-                // JSON.parseArray(jedisUtil.getValue(Const.MENU+personId),
-                // Index_Menu.class);
                 result = Index_MenuCache.get(Const.MENU + personId);
                 if (result != null) {
                     Index_MenuCache.getOperations().delete(Const.MENU + personId);

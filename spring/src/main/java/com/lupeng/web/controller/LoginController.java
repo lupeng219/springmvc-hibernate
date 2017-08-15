@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +38,8 @@ import com.lupeng.web.util.SecurityUserHolder;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+    private  final Logger logger = LoggerFactory.getLogger(getClass());
+
 
     @Resource(name = "redisTemplate")
     protected ValueOperations<String, Integer> redisCache;  
@@ -59,7 +62,7 @@ public class LoginController {
      */
     @RequestMapping("/index")
     public String index(HttpServletRequest request) {
-
+        logger.debug("ddd");
         return "login/index";
 
     }

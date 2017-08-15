@@ -33,6 +33,7 @@
 	<org.springframework.version>3.2.9.RELEASE</org.springframework.version>
 	<urlrewritefilterVersion>4.0.3</urlrewritefilterVersion>
 	<fastjsonVersion>1.2.4</fastjsonVersion>
+	<jackson-mapper-asl.version>1.9.8</jackson-mapper-asl.version>
   </properties>
   <!-- hibernate配置-->
    <dependencies>
@@ -147,6 +148,11 @@
 	        <artifactId>activemq-pool</artifactId>  
 	        <version>5.12.1</version>  
    		 </dependency>  
+   		 <dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson-mapper-asl.version}</version>
+		</dependency>
 		<!-- <dependency>
 		    <groupId>org.apache.activemq</groupId>
 		    <artifactId>activemq-all-5.12.0.jar</artifactId>
