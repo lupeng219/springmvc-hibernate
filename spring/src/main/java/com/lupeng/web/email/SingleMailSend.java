@@ -14,10 +14,10 @@ public class SingleMailSend {
     
     public static void main(String[] args)throws Exception {
         
-        //simpleEmail();
+        simpleEmail();
         //HtmlEmail();
         //AttachedFileMail();
-        AttachedImageMail();
+//        AttachedImageMail();
     }
     
     public static void simpleEmail(){
@@ -27,14 +27,14 @@ public class SingleMailSend {
         // 建立邮件消息  
         SimpleMailMessage mailMessage = new SimpleMailMessage();  
         // 设置收件人，寄件人 用数组发送多个邮件  
-        // String[] array = new String[] {"sun111@163.com","sun222@sohu.com"};  
+         // String[] array = new String[] {"sun111@163.com","sun222@sohu.com"};  
         // mailMessage.setTo(array);  
         mailMessage.setTo("18330154243@qq.com");  
         mailMessage.setFrom("lupeng@credithundred.com");  
         mailMessage.setSubject("测试简单文本邮件发送！");  
         mailMessage.setText("测试我的简单邮件发送机制！！");
         senderImpl.setUsername("lupeng@credithundred.com"); // 根据自己的情况,设置username  
-        senderImpl.setPassword("Lupeng123 "); // 根据自己的情况, 设置password
+        senderImpl.setPassword("Lupeng123"); // 根据自己的情况, 设置password
         Properties prop = new Properties();  
         prop.put("mail.smtp.auth", "true"); // 将这个参数设为true，让服务器进行认证,认证用户名和密码是否正确  
         prop.put("mail.smtp.timeout", "25000");  
