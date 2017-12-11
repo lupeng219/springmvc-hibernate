@@ -3,8 +3,10 @@ package com.lupeng.web.controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -47,8 +49,8 @@ public class TestController {
     }
 
     public static void main(String[] args) {
-       System.err.println(Math.random());
-        System.err.println(isUnique("abvb"));
+//        System.err.println(Math.random());
+//        System.err.println(isUnique("abvb"));
     }
 
     public static boolean isUnique(String str){
