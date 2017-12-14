@@ -39,20 +39,26 @@
 		<google-collections.version>1.0</google-collections.version>
 		<commons-lang.version>2.6</commons-lang.version>
 		<email.version>1.4.7</email.version>
+		<httpclient.version>4.5.2</httpclient.version>
+		<json.version>2.4</json.version>
+		<poi.version>3.10-FINAL</poi.version>
 	</properties>
 	<!-- hibernate配置 -->
 	<dependencies>
-			<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
 		<dependency>
 		    <groupId>org.apache.httpcomponents</groupId>
 		    <artifactId>httpclient</artifactId>
-		    <version>4.5.2</version>
+		    <version>${httpclient.version}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi</artifactId>
+		    <version>${poi.version}</version>
+		</dependency>
 		<dependency>    
 		    <groupId>net.sf.json-lib</groupId>    
 		    <artifactId>json-lib</artifactId>    
-		    <version>2.4</version>    
+		    <version>${json.version}</version>    
 		    <classifier>jdk15</classifier>    
 		</dependency>  
 		<dependency>

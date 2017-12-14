@@ -5,9 +5,12 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
@@ -51,6 +54,12 @@ public class TestController {
     public static void main(String[] args) {
 //        System.err.println(Math.random());
 //        System.err.println(isUnique("abvb"));
+       Number a = 1;
+       Number v =0.1111;
+       System.err.println(v);
+       Integer aa =-128;
+       Integer bb = -128;
+       System.err.println(aa==bb);
     }
 
     public static boolean isUnique(String str){
