@@ -26,11 +26,11 @@ import org.slf4j.LoggerFactory;
 
 
 
-public class AnalyseTransExcel {
+public class ExportExcel {
 	
 	
 	private static final Logger logger = LoggerFactory
-	        .getLogger(AnalyseTransExcel.class);
+	        .getLogger(ExportExcel.class);
 	/**
 	 * excel 每一个sheet工作表显示的记录数
 	 */
