@@ -46,7 +46,7 @@ public class PowerRepositoryImpl implements PowerRepository {
 
     @Override
     public List<Power> findPowerByPowerId(List<Long> powerId) {
-        List<Power> power =new ArrayList<>();
+        List<Power> power =new ArrayList<Power>();
         if(powerId.size()>0){
             Session session = sessionFactory.openSession();  
             Criteria cri = session.createCriteria(Power.class);  

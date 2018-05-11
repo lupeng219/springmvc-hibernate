@@ -34,7 +34,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     @Override
     public List<Employee> getEmployeeByEmployeeId(List<Long> employeeId) {
         // TODO Auto-generated method stub @Query("SELECT e  FROM Employee e WHERE e.employeeId  in(?1) ")
-        List<Employee> e = new ArrayList<>() ;
+        List<Employee> e = new ArrayList<Employee>() ;
         if (employeeId.size()>0){
             Session session = sessionFactory.openSession();  
             Criteria cri = session.createCriteria(Employee.class);  

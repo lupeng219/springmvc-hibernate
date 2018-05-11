@@ -71,7 +71,7 @@ public class PersonaController {
         // 所有权限查询
         List<Power> allPowers = null;
 
-        List<PowerData> allPowerDatas = new ArrayList<>();
+        List<PowerData> allPowerDatas = new ArrayList<PowerData>();
         // 角色信息
         Persona p2p_persona = null;
         // 得到所有的权限

@@ -24,12 +24,12 @@ public class PersonaPowerRepositoryImpl  implements PersonaPowerRepository{
     private SessionFactory sessionFactory;  
     
     @Override
-    public List<Long> findPowerId(long personaId) {
+    public List <Long> findPowerId(long personaId) {
         Session session = sessionFactory.openSession();  
         Criteria cri = session.createCriteria(Persona_power.class);  
         cri.add(Restrictions.eq("personaId", personaId));  
         List<Persona_power> persona_power =  cri.list();  
-        List<Long> id = new ArrayList<>();
+        List<Long> id = new ArrayList<Long>();
         for(Persona_power p: persona_power){
            id.add(p.getPowerId());
         }

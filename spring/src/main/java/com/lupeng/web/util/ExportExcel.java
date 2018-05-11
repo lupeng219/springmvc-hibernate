@@ -65,7 +65,7 @@ public class ExportExcel {
 	    try {
 	    	//得到需要的实体类型
 	    	tempObject = clazz.newInstance();
-		} catch (InstantiationException | IllegalAccessException e1) {
+		} catch (Exception  e1) {
 			e1.printStackTrace();
 			logger.error("下载错误");
 		}
