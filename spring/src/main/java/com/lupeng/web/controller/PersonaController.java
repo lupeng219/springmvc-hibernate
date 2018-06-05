@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.crdloo.loanloop.exception.BusinessException;
-import com.crdloo.loanloop.utils.JsonHelper;
+
+
 import com.lupeng.web.data.EmployeeData;
 import com.lupeng.web.data.Index_Menu;
 import com.lupeng.web.data.PowerData;
@@ -30,6 +30,7 @@ import com.lupeng.web.service.PersonaService;
 import com.lupeng.web.service.PowerService;
 import com.lupeng.web.util.BusinessExcepsion;
 import com.lupeng.web.util.Const;
+import com.lupeng.web.util.JsonHelper;
 import com.lupeng.web.util.SecurityUserHolder;
 import com.lupeng.web.util.StringUtil;
 
@@ -70,13 +71,14 @@ public class PersonaController {
         // 所有权限查询
         List<Power> allPowers = null;
 
-        List<PowerData> allPowerDatas = new ArrayList<>();
+        List<PowerData> allPowerDatas = new ArrayList<PowerData>();
         // 角色信息
         Persona p2p_persona = null;
         // 得到所有的权限
         allPowers = powerService.getAllPower();
         for (Power power : allPowers) {
             allPowerDatas.add(JsonHelper.convert(power, PowerData.class));
+           
         }
         if (personaId != null) {
             List<Long> employeeId = employeeService.fingEmployeeIdBypersonaId(personaId);
@@ -157,9 +159,6 @@ public class PersonaController {
                 personaService.updatePersona(persona, powerIds);
                 // 更新用户权限
                 List<Index_Menu> result = null;
-                // result =
-                // JSON.parseArray(jedisUtil.getValue(Const.MENU+personId),
-                // Index_Menu.class);
                 result = Index_MenuCache.get(Const.MENU + personId);
                 if (result != null) {
                     Index_MenuCache.getOperations().delete(Const.MENU + personId);

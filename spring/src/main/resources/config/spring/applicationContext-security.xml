@@ -21,7 +21,6 @@
 	<!-- 登陆失败的或者没登陆跳转的接口 -->
 	 <http  access-denied-page="/service/login/unSecurity" entry-point-ref="authenticationProcessingFilterEntryPoint">
 		<intercept-url pattern="/service/employee/getAllEmployees" access="ROLE_ALLEMP" />
-		
 	<!-- 需要登陆才能访问的路径 -->
 		<custom-filter ref="loginFilter" position="FORM_LOGIN_FILTER" />
 		<logout logout-url="/service/login/logout" logout-success-url="/" invalidate-session="true"

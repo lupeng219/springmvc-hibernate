@@ -63,6 +63,6 @@
 	$("footer").css({"position":"fixed","bottom":"0","width":"100%"});
 </script>
 <script>seajs.use("login/login");</script>
-
+<script type="text/javascript" src="http://ip.chinaz.com/getip.aspx"></script>
 </body>
 </html>

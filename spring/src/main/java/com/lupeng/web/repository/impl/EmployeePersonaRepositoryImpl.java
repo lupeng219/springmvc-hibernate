@@ -57,4 +57,21 @@ public class EmployeePersonaRepositoryImpl  implements EmployeePersonaRepository
         return id;
     }
 
+    @Override
+    public void save(Employee_persona employee_persona) {
+        Session session = sessionFactory.openSession(); 
+        session.save(employee_persona);
+        session.close(); 
+    }
+
+    @Override
+    public void delete(Employee_persona employee_persona) {
+        Session session = sessionFactory.openSession(); 
+        session.beginTransaction();
+        session.delete(employee_persona);
+        session.getTransaction().commit();  
+        session.close(); 
+        
+    }
+
 }

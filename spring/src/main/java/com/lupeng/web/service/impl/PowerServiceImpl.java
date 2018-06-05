@@ -109,7 +109,7 @@ public class PowerServiceImpl  implements PowerService{
 
     @Override
     public Map<String, Object> addPowerInfo(Power power) {
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<String, Object>();
         powerRepository.save(power);
         redisCache.getOperations().delete(Const.MENU + 1);
         map.put(Const.retCode, true);
