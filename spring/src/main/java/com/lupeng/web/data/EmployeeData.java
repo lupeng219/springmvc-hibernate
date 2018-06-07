@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.lupeng.web.entity.Employee;
 
 
-public class EmployeeData implements UserDetails, java.io.Serializable {   
+public class EmployeeData implements UserDetails, java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
     private Long employeeId;// 员工id
