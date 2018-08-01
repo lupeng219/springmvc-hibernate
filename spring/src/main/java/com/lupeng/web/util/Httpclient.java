@@ -2,10 +2,12 @@ package com.lupeng.web.util;
 
 import net.sf.json.JSONObject;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +26,7 @@ public class Httpclient {
      */
     public static JSONObject httpPost(String url,JSONObject jsonParam, boolean noNeedResponse){
         //post请求返回结果
-        DefaultHttpClient httpClient = new DefaultHttpClient();
+         HttpClient httpClient = HttpClientBuilder.create().build();
         JSONObject jsonResult = null;
         HttpPost method = new HttpPost(url);
         try {
@@ -53,6 +55,7 @@ public class Httpclient {
             }
         } catch (IOException e) {
         }
+
         return jsonResult;
     }
     public static void main(String[] args) {
@@ -61,7 +64,7 @@ public class Httpclient {
         map.put("token","21483b67-c3a5-4247-9bd4-2e5dcc0216b6");
         map.put("id", 16);
         jsonParam.accumulateAll(map);
-        JSONObject jsonResult = httpPost("http://47.94.109.119:8080/app/task/info", jsonParam, false);
+        JSONObject jsonResult = httpPost("http://10.168.15.77:9020/transaction/revoke/ajaxcheck_revoke", jsonParam, false);
         System.err.println(jsonResult);
         
     }
