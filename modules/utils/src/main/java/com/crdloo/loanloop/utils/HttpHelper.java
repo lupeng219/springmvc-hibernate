@@ -10,6 +10,7 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -189,7 +190,7 @@ public class HttpHelper {
      *
      * @param url
      *            请求地址
-     * @param list
+     * @param map
      *            请求参数
      *
      * @return 请求结果
@@ -241,7 +242,7 @@ public class HttpHelper {
      *
      * @param url
      *            请求地址
-     * @param list
+     * @param map
      *            请求参数
      *
      * @return 请求结果
@@ -289,5 +290,12 @@ public class HttpHelper {
         bufferedReader.close();
         return result.toString();
     }
+    public static void main(String[] args)throws IOException {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("token","21483b67-c3a5-4247-9bd4-2e5dcc0216b6");
+        map.put("id", "d");
+        String jsonResult = HttpHelper.sendPost("http://10.168.15.77:9020/transaction/revoke/ajaxcheck_revoke",map);
+        System.err.println(jsonResult);
 
+    }
 }
