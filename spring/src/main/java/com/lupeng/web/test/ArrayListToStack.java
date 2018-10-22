@@ -1,9 +1,6 @@
 package com.lupeng.web.test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * 实现栈
@@ -40,6 +37,8 @@ public class ArrayListToStack {
         arrayList.add("111");
         arrayList.add("200");
         arrayList.add("99");
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("a","b");
         for (Object arrayList1: arrayList) {
             System.out.print(arrayList1);
         }

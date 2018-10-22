@@ -37,6 +37,10 @@ public class EmployeeData implements UserDetails, java.io.Serializable {
     private boolean credentialsNonExpired = true;// 用户证书是否有效
     private Collection<GrantedAuthority> authorities;// 用户证书是否有效
 
+    public EmployeeData(){
+
+    }
+
     public EmployeeData(Employee employee) {
         this.employeeId = employee.getEmployeeId();
         this.custNo = employee.getCustNo();
